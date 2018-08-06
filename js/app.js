@@ -29,6 +29,8 @@ const myDeck = document.querySelector(".deck");
  for (var i=0; i<cardImages.length; i++) {
    const card = document.createElement("DIV");
    card.classList.add("card");
+   const cardImage = cardImages[i];
+   card.insertAdjacentHTML('afterbegin', `<i class='${cardImage}'></i>`);
    myDeck.appendChild(card);
    };
 
@@ -45,10 +47,17 @@ function addOpen(card) {
   card.classList.add("open");
 }
 
+// function displaying the card's symbol
+function showSymbol(card) {
+  card.classList.add("show");
+}
+
+
 // set up the event listener for a card.
 myCards.forEach( function(currentValue, currentIndex, listObj) {
 currentValue.addEventListener("click", function (e) {
     e.preventDefault();
+    showSymbol(currentValue);
     addOpen(currentValue);
     console.log("listening to this click!");
     clickCount++;
@@ -58,13 +67,12 @@ currentValue.addEventListener("click", function (e) {
 
 
 
-/*  - display the card's symbol (put this functionality in another function that you call from this one)
 
 
 
 
 
-*  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+/*  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
 
 function addOpen() {
   myClick.classList.add("open");
