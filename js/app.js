@@ -59,6 +59,7 @@ let moveCount = 0;
 // counter of matched pairs
 let matchCount = 0;
 
+
 //function adding class of clicked card to openCardCont
 function storeImage(card) {
   const currentImage = card.firstElementChild.className;
@@ -73,8 +74,8 @@ function lockCards() {
     currentValue.classList.remove("open");
     openCardCont.pop();
     openCardCont.pop();
-    matchCount++;
   });
+  matchCount++;
 }
 
 // function removing unmatched cards from the list and hiding card's symbols
@@ -108,16 +109,16 @@ function checkMatch() {
   }
   else {
     return cardQuant;
-  }
+  };
 }
 
 
 // if all cards have matched, display a message with the final score
 
 function endMessage() {
-
-}
-
+  const moves = moveCount;
+  alert(`End of the game! It took you ${moves} moves to complete it`);
+  }
 
 
 
@@ -131,7 +132,13 @@ currentValue.addEventListener("click", function (e) {
     storeImage(currentValue);
     // compare cards (if they are 2 different ones!!!)
     delay();
-    (matchCount == 8) ? endMessage() : return matchCount;
+
+    if (matchCount === 8) {
+      endMessage();
+    } else {
+      console.log(`number of pairs matched: ${matchCount}`);
+    }
+
     console.log(clickCount);
   });
 });
@@ -154,6 +161,6 @@ currentValue.addEventListener("click", function (e) {
 
 
 
-/*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+/* increment the move counter and display it on the page (put this functionality in another function that you call from this one)
 
-*    +
+*/
