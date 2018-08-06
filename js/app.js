@@ -53,6 +53,9 @@ function showSymbol(card) {
 // container for comparing open cards
 const openCardCont = [];
 
+// move counter
+let moveCount = 0;
+
 // counter of matched pairs
 let matchCount = 0;
 
@@ -95,6 +98,7 @@ function delay() {
 function checkMatch() {
   const cardQuant = openCardCont.length;
   if (cardQuant>0 && cardQuant%2==0) {
+    moveCount++;
     //compare the cards
     if (openCardCont[0] == openCardCont[1]){
       lockCards();
@@ -108,6 +112,15 @@ function checkMatch() {
 }
 
 
+// if all cards have matched, display a message with the final score
+
+function endMessage() {
+
+}
+
+
+
+
 // set up the event listener for a card.
 myCards.forEach( function(currentValue, currentIndex, listObj) {
 currentValue.addEventListener("click", function (e) {
@@ -118,6 +131,7 @@ currentValue.addEventListener("click", function (e) {
     storeImage(currentValue);
     // compare cards (if they are 2 different ones!!!)
     delay();
+    (matchCount == 8) ? endMessage() : return matchCount;
     console.log(clickCount);
   });
 });
@@ -142,5 +156,4 @@ currentValue.addEventListener("click", function (e) {
 
 /*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
 
-*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
-*/
+*    +
