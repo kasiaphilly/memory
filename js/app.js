@@ -36,17 +36,26 @@ const myDeck = document.querySelector(".deck");
 // add click counter
     let clickCount=0;
 
-    
+
 // set up the event listener for a card.
 
+const myCards = document.querySelectorAll('div.card');
+
+
+myCards.forEach( function(currentValue, currentIndex, listObj) {
+currentValue.addEventListener("click", function () {
+    console.log("listening to this click!");
+    clickCount++;
+    console.log(clickCount);
+  });
+});
+
+
+// later add addOpen() instead of console.log
 
 
 
-
-
-
-
-*  - display the card's symbol (put this functionality in another function that you call from this one)
+/*  - display the card's symbol (put this functionality in another function that you call from this one)
 *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
 *  - if the list already has another card, check to see if the two cards match
 *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
