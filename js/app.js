@@ -52,12 +52,36 @@ function showSymbol(card) {
 
 // container for comparing open cards
 const openCardCont = [];
+let cardQuant = openCardCont.length;
 
 //function adding class of clicked card to openCardCont
 function storeImage(card) {
   const currentImage = card.firstElementChild.className;
   openCardCont.push(currentImage);
 }
+
+// function locking matching cards in the open position
+function lockCards() {
+  const openCards = document.querySelectorAll('div.open');
+  openCards.forEach( function(currentValue, currentIndex, listObj) {
+    currentValue.classList.add("match");
+    currentValue.classList.remove("open");
+    openCardCont.pop();
+    openCardCont.pop();
+  });
+}
+
+// function removing unmatched cards from the list and hiding card's symbols
+function hideCards() {
+  const openCards = document.querySelectorAll('div.open');
+  openCards.forEach( function(currentValue, currentIndex, listObj) {
+    currentValue.classList.remove("open");
+    currentValue.classList.remove("show");
+    openCardCont.pop();
+    openCardCont.pop();
+  });
+}
+
 
 // set up the event listener for a card.
 myCards.forEach( function(currentValue, currentIndex, listObj) {
@@ -67,39 +91,27 @@ currentValue.addEventListener("click", function (e) {
     showSymbol(currentValue);
     addOpen(currentValue);
     storeImage(currentValue);
-    console.log("listening to this click!");
     console.log(clickCount);
   });
 });
 
 
-
-
-
-
-
- // if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
-
-function lockCards() {
-  const openCards = document.querySelectorAll('div.open');
-  openCards.forEach( function(currentValue, currentIndex, listObj) {
-    currentValue.classList.add("match");
-    currentValue.classList.remove("open");
+// if the list already has another card, check to see if the two cards match
+/*function checkMatch(){
+  if (cardQuant == 0) {
+    //compare the cards
+    if (openCardCont[0] == openCardCont[1]){
+      lockCards();
+    } else {
+      hideCards();
+    }
+  }
+  else {
+    return cardQuant;
   }
 }
+*/
 
-
-// if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
-
-function hideCards() {
-  const openCards = document.querySelectorAll('div.open');
-  openCards.forEach( function(currentValue, currentIndex, listObj) {
-    currentValue.classList.remove("open");
-    currentValue.classList.remove("show");
-    openCardCont.pop();
-    openCardCont.pop();
-  }
-}
 
 
 
