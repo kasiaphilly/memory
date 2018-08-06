@@ -53,6 +53,9 @@ function showSymbol(card) {
 // container for comparing open cards
 const openCardCont = [];
 
+// counter of matched pairs
+let matchCount = 0;
+
 //function adding class of clicked card to openCardCont
 function storeImage(card) {
   const currentImage = card.firstElementChild.className;
@@ -67,6 +70,7 @@ function lockCards() {
     currentValue.classList.remove("open");
     openCardCont.pop();
     openCardCont.pop();
+    matchCount++;
   });
 }
 
@@ -85,6 +89,7 @@ function hideCards() {
 function delay() {
   const checkDelay = setTimeout(checkMatch, 3000);
 }
+
 
 // if the list already has another card, check to see if the two cards match
 function checkMatch() {
@@ -111,8 +116,7 @@ currentValue.addEventListener("click", function (e) {
     showSymbol(currentValue);
     addOpen(currentValue);
     storeImage(currentValue);
-    // compare cards
-    //add delay to allow looking at second clicked card
+    // compare cards (if they are 2 different ones!!!)
     delay();
     console.log(clickCount);
   });
@@ -122,22 +126,14 @@ currentValue.addEventListener("click", function (e) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+//TO-DOs:
 
 //do not allow to click twice on the same card to lock it
 
 // remove the card from the myCards array once locked, to stop counting clicks on it
+
+// figure out the timing problem - if you click too fast on a new card after uncovering a match, it messes up the game --> another click event listener?? It should be somewhere in the lockCards function?
+
 
 // create timer
 
