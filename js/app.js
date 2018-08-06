@@ -29,6 +29,7 @@ const myDeck = document.querySelector(".deck");
  for (var i=0; i<cardImages.length; i++) {
    const card = document.createElement("DIV");
    card.classList.add("card");
+   card.classList.add("clickable");
    const cardImage = cardImages[i];
    card.insertAdjacentHTML('afterbegin', `<i class='${cardImage}'></i>`);
    myDeck.appendChild(card);
@@ -38,7 +39,7 @@ const myDeck = document.querySelector(".deck");
 let clickCount=0;
 
 // set reference to all cards
-const myCards = document.querySelectorAll('div.card');
+const myCards = document.querySelectorAll('div.clickable');
 
 // function adding "open" class to clicked card
 function addOpen(card) {
@@ -90,6 +91,7 @@ function hideCards() {
   openCards.forEach( function(currentValue, currentIndex, listObj) {
     currentValue.classList.remove("open");
     currentValue.classList.remove("show");
+    currentValue.classList.add("clickable"); // FIX!
     openCardCont.pop();
     openCardCont.pop();
   });
@@ -120,12 +122,10 @@ function checkMatch() {
 
 
 // if all cards have matched, display a message with the final score
-
 function endMessage() {
   const moves = moveCount;
   alert(`End of the game! It took you ${moves} moves to complete it`);
   }
-
 
 
 // set up the event listener for a card.
@@ -137,10 +137,8 @@ currentValue.addEventListener("click", function (e) {
     addOpen(currentValue);
     storeImage(currentValue);
     // compare cards (if they are 2 different ones!!!)
+    currentValue.classList.remove("clickable"); // FIX!
     delay();
-
-
-
     console.log(clickCount);
   });
 });
