@@ -52,7 +52,6 @@ function showSymbol(card) {
 
 // container for comparing open cards
 const openCardCont = [];
-let cardQuant = openCardCont.length;
 
 //function adding class of clicked card to openCardCont
 function storeImage(card) {
@@ -83,22 +82,10 @@ function hideCards() {
 }
 
 
-// set up the event listener for a card.
-myCards.forEach( function(currentValue, currentIndex, listObj) {
-currentValue.addEventListener("click", function (e) {
-    e.preventDefault();
-    clickCount++;
-    showSymbol(currentValue);
-    addOpen(currentValue);
-    storeImage(currentValue);
-    console.log(clickCount);
-  });
-});
-
-
 // if the list already has another card, check to see if the two cards match
-/*function checkMatch(){
-  if (cardQuant == 0) {
+function checkMatch() {
+  const cardQuant = openCardCont.length;
+  if (cardQuant>0 && cardQuant%2==0) {
     //compare the cards
     if (openCardCont[0] == openCardCont[1]){
       lockCards();
@@ -110,7 +97,38 @@ currentValue.addEventListener("click", function (e) {
     return cardQuant;
   }
 }
-*/
+
+
+
+
+
+
+
+
+
+// set up the event listener for a card.
+myCards.forEach( function(currentValue, currentIndex, listObj) {
+currentValue.addEventListener("click", function (e) {
+    e.preventDefault();
+    clickCount++;
+    showSymbol(currentValue);
+    addOpen(currentValue);
+    storeImage(currentValue);
+    // compare cards
+    //add delay to allow looking at second clicked card
+    checkMatch();
+    console.log(clickCount);
+  });
+});
+
+
+//do not allow to click twice on the same card to lock it
+
+// remove the card from the myCards array once locked, to stop counting clicks on it
+
+
+
+
 
 
 
