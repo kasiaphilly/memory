@@ -33,8 +33,19 @@ const myDeck = document.querySelector(".deck");
    };
 
 
-/*
-* set up the event listener for a card. If a card is clicked:
+// add click counter
+    let clickCount=0;
+
+    
+// set up the event listener for a card.
+
+
+
+
+
+
+
+
 *  - display the card's symbol (put this functionality in another function that you call from this one)
 *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
 *  - if the list already has another card, check to see if the two cards match
