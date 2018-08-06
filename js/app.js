@@ -4,8 +4,11 @@
 
 const cardImages = ["fa fa-cloud", "fa fa-cloud", "fa fa-heart", "fa fa-heart", "fa fa-eye", "fa fa-eye", "fa fa-bolt", "fa fa-bolt", "fa fa-futbol-o", "fa fa-futbol-o", "fa fa-bicycle", "fa fa-bicycle", "fa fa-paw", "fa fa-paw", "fa fa-puzzle-piece", "fa fa-puzzle-piece"];
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+//create and display counter of moves
+let moveCount = 0;
+const moveCounter = document.getElementById("moves");
 
+// Shuffle function from http://stackoverflow.com/a/2450976
 function shuffleCards(array) {
      var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -33,10 +36,6 @@ const myDeck = document.querySelector(".deck");
    card.insertAdjacentHTML('afterbegin', `<i class='${cardImage}'></i>`);
    myDeck.appendChild(card);
    };
-
-//create and display counter of moves
-let moveCount = 0;
-const moveCounter = document.getElementById("moves");
 
 // add click counter
 let clickCount=0;
