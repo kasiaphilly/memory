@@ -35,7 +35,7 @@ const myDeck = document.querySelector(".deck");
    };
 
 // add click counter
-    let clickCount=0;
+let clickCount=0;
 
 // set reference to all cards
 const myCards = document.querySelectorAll('div.card');
@@ -75,6 +75,18 @@ currentValue.addEventListener("click", function (e) {
 
 
 
+
+
+
+ // if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+
+function lockCards() {
+  const openCards = document.querySelectorAll('div.open');
+  openCards.forEach( function(currentValue, currentIndex, listObj) {
+    currentValue.classList.add("match");
+    currentValue.classList.remove("open");
+  }
+}
 
 
 /*
