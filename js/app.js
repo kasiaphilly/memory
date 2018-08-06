@@ -81,6 +81,10 @@ function hideCards() {
   });
 }
 
+// function setting a delay to allow seeing second card before running checkMatch
+function delay() {
+  const checkDelay = setTimeout(checkMatch, 3000);
+}
 
 // if the list already has another card, check to see if the two cards match
 function checkMatch() {
@@ -99,13 +103,6 @@ function checkMatch() {
 }
 
 
-
-
-
-
-
-
-
 // set up the event listener for a card.
 myCards.forEach( function(currentValue, currentIndex, listObj) {
 currentValue.addEventListener("click", function (e) {
@@ -116,35 +113,38 @@ currentValue.addEventListener("click", function (e) {
     storeImage(currentValue);
     // compare cards
     //add delay to allow looking at second clicked card
-    checkMatch();
+    delay();
     console.log(clickCount);
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //do not allow to click twice on the same card to lock it
 
 // remove the card from the myCards array once locked, to stop counting clicks on it
 
+// create timer
 
 
 
 
-
-
-
-
-
-/*
-
-
-
-*  - if the list already has another card, check to see if the two cards match
-
-
-
-
-*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+/*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
 
 *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
 */
