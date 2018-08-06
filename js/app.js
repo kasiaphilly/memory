@@ -76,6 +76,12 @@ function lockCards() {
     openCardCont.pop();
   });
   matchCount++;
+  //check if the game is complete and if to display end message
+  if (matchCount === 8) {
+    endMessage();
+  } else {
+    console.log(`number of pairs matched: ${matchCount}`);
+  }
 }
 
 // function removing unmatched cards from the list and hiding card's symbols
@@ -133,11 +139,7 @@ currentValue.addEventListener("click", function (e) {
     // compare cards (if they are 2 different ones!!!)
     delay();
 
-    if (matchCount === 8) {
-      endMessage();
-    } else {
-      console.log(`number of pairs matched: ${matchCount}`);
-    }
+
 
     console.log(clickCount);
   });
