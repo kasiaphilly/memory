@@ -20,7 +20,7 @@ function shuffleCards(array) {
  }
 
 // shuffle the deck
-
+shuffleCards(cardImages);
 
 // create and display the cards on the deck
 
@@ -34,10 +34,8 @@ const myDeck = document.querySelector(".deck");
    myDeck.appendChild(card);
    };
 
-
 // add click counter
     let clickCount=0;
-
 
 // set reference to all cards
 const myCards = document.querySelectorAll('div.card');
@@ -51,7 +49,6 @@ function addOpen(card) {
 function showSymbol(card) {
   card.classList.add("show");
 }
-
 
 // set up the event listener for a card.
 myCards.forEach( function(currentValue, currentIndex, listObj) {
