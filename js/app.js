@@ -34,6 +34,10 @@ const myDeck = document.querySelector(".deck");
    myDeck.appendChild(card);
    };
 
+//create and display counter of moves
+let moveCount = 0;
+const moveCounter = document.getElementById("moves");
+
 // add click counter
 let clickCount=0;
 
@@ -53,12 +57,8 @@ function showSymbol(card) {
 // container for comparing open cards
 const openCardCont = [];
 
-// move counter
-let moveCount = 0;
-
-// counter of matched pairs
+// counter of matches
 let matchCount = 0;
-
 
 //function adding class of clicked card to openCardCont
 function storeImage(card) {
@@ -106,6 +106,7 @@ function checkMatch() {
   const cardQuant = openCardCont.length;
   if (cardQuant>0 && cardQuant%2==0) {
     moveCount++;
+    moveCounter.innerHTML = Number(moveCounter.innerHTML) + 1;
     //compare the cards
     if (openCardCont[0] == openCardCont[1]){
       lockCards();
