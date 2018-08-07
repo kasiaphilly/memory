@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards
  */
 
-const cardImages = ["far fa-angry", "far fa-angry", "fas fa-grin-squint-tears", "fas fa-grin-squint-tears", "far fa-kiss-wink-heart", "far fa-kiss-wink-heart", "far fa-grin-tongue-wink", "far fa-grin-tongue-wink", "far fa-grin-stars", "far fa-grin-stars", "far fa-meh-rolling-eyes", "far fa-meh-rolling-eyes", "fas fa-sad-cry", "fas fa-sad-cry", "far fa-smile", "far fa-smile"];
+const cardImages = ["far fa-angry", "far fa-angry", "fas fa-grin-squint-tears", "fas fa-grin-squint-tears", "far fa-kiss-wink-heart", "far fa-kiss-wink-heart", "far fa-grin-tongue-wink", "far fa-grin-tongue-wink", "far fa-grin-stars", "far fa-grin-stars", "fas fa-meh-rolling-eyes", "fas fa-meh-rolling-eyes", "fas fa-sad-cry", "fas fa-sad-cry", "far fa-smile", "far fa-smile"];
 
 //create and display counter of moves
 let moveCount = 0;
@@ -25,16 +25,21 @@ function shuffleCards(array) {
 // shuffle the deck
 shuffleCards(cardImages);
 
-// create and display the cards on the deck
+// function to create and display the cards on the deck
 const myDeck = document.querySelector(".deck");
 
- for (var i=0; i<cardImages.length; i++) {
+function buildDeck() {
+  for (var i=0; i<cardImages.length; i++) {
    const card = document.createElement("DIV");
    card.classList.add("card");
    const cardImage = cardImages[i];
    card.insertAdjacentHTML('afterbegin', `<i class='${cardImage}'></i>`);
    myDeck.appendChild(card);
    };
+};
+
+// create the deck
+buildDeck();
 
 // create array of star symbols
 const starSymbols = ["fas fa-star", "far fa-star", "fas fa-star-half-alt"];
