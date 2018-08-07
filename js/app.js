@@ -51,6 +51,7 @@ function cardClickListener(e){
   e.preventDefault();
   clickCount++;
   moveCounter.innerHTML = Number(moveCounter.innerHTML) + 1;
+  removeClickListener(e.target);
   showSymbol(e.target);
   addOpen(e.target);
   storeImage(e.target);
@@ -107,8 +108,12 @@ function showSymbol(card) {
 
 //function adding class of clicked card to openCardCont
 function storeImage(card) {
-  const currentImage = card.firstElementChild.className;
-  openCardCont.push(currentImage);
+  if (card.children.length > 0){
+    const currentImage = card.firstElementChild.className;
+    openCardCont.push(currentImage);
+  } else {
+    console.log("nothing to store");
+  }
 };
 
 // function locking matching cards in the open position
@@ -117,7 +122,7 @@ function lockCards() {
   openCards.forEach( function(currentValue, currentIndex, listObj) {
     currentValue.classList.add("match");
     currentValue.classList.remove("open");
-    removeClickListener(currentValue);
+    //removeClickListener(currentValue);
     openCardCont.pop();
     openCardCont.pop();
   });
@@ -137,6 +142,7 @@ function hideCards() {
   openCards.forEach( function(currentValue, currentIndex, listObj) {
     currentValue.classList.remove("open");
     currentValue.classList.remove("show");
+    currentValue.addEventListener("click", cardClickListener);
     openCardCont.pop();
     openCardCont.pop();
   });
@@ -207,7 +213,9 @@ restart.addEventListener("click", function (e) {
 
 //do not allow to click twice on the same card to lock it
 
-// remove the card from the myCards array once locked, to stop counting clicks on it
+//if (target of click 1 != target of click 2){}
+
+
 
 // figure out the timing problem - if you click too fast on a new card after uncovering a match, it messes up the game --> another click event listener?? It should be somewhere in the lockCards function?
 
