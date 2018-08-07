@@ -36,14 +36,16 @@ const myDeck = document.querySelector(".deck");
    myDeck.appendChild(card);
    };
 
-// create and display the stars panel
+// create array of star symbols
+const starSymbols = ["fas fa-star", "far fa-star", "fas fa-star-half-alt"];
 
+// create and display the stars panel
 const starPanel = document.querySelector(".stars");
 
 for (var i=0; i<3; i++) {
   const star = document.createElement("LI");
   star.classList.add("star"+i);
-  star.insertAdjacentHTML('afterbegin', `<i class="fa fa-star"></i>`);
+  star.insertAdjacentHTML('afterbegin', `<i class='${starSymbols[2]}'></i>`);
   starPanel.appendChild(star);
   };
 
