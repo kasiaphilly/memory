@@ -9,6 +9,9 @@ const starSymbols = ["fas fa-star", "far fa-star", "fas fa-star-half-alt"];
 // reference to the card deck
 const myDeck = document.querySelector(".deck");
 
+// reference to the star panel
+const starPanel = document.querySelector(".stars");
+
 // reference to reset icon
 const restart = document.getElementById("restart");
 
@@ -43,6 +46,24 @@ function shuffleCards(array) {
 // shuffle the deck
 shuffleCards(cardImages);
 
+// event handler for click on card
+function cardClickListener(e){
+  e.preventDefault();
+  clickCount++;
+  moveCounter.innerHTML = Number(moveCounter.innerHTML) + 1;
+  showSymbol(e.target);
+  addOpen(e.target);
+  storeImage(e.target);
+  // compare cards (if they are 2 different ones!!!)
+  delay();
+  console.log(clickCount);
+};
+
+// function removing event listener from card
+function removeClickListener(card) {
+  card.removeEventListener("click", cardClickListener);
+};
+
 // function to create and display the cards on the deck
 function buildDeck() {
   for (var i=0; i<cardImages.length; i++) {
@@ -51,19 +72,7 @@ function buildDeck() {
    const cardImage = cardImages[i];
    card.insertAdjacentHTML('afterbegin', `<i class='${cardImage}'></i>`);
    myDeck.appendChild(card);
-
-// adds event listener to each card
-    card.addEventListener("click", function (e) {
-      e.preventDefault();
-      clickCount++;
-      moveCounter.innerHTML = Number(moveCounter.innerHTML) + 1;
-      showSymbol(card);
-      addOpen(card);
-      storeImage(card);
-      // compare cards (if they are 2 different ones!!!)
-      delay();
-      console.log(clickCount);
-    });
+   card.addEventListener("click", cardClickListener); // adds listener to each card
   };
 };
 
@@ -71,8 +80,6 @@ function buildDeck() {
 buildDeck();
 
 // function to create and display the stars panel
-const starPanel = document.querySelector(".stars");
-
 function buildStars() {
   for (var i=0; i<3; i++) {
     const star = document.createElement("LI");
@@ -91,18 +98,18 @@ const myCards = document.querySelectorAll('div.card');
 // function adding "open" class to clicked card
 function addOpen(card) {
   card.classList.add("open");
-}
+};
 
 // function displaying the card's symbol
 function showSymbol(card) {
   card.classList.add("show");
-}
+};
 
 //function adding class of clicked card to openCardCont
 function storeImage(card) {
   const currentImage = card.firstElementChild.className;
   openCardCont.push(currentImage);
-}
+};
 
 // function locking matching cards in the open position
 function lockCards() {
@@ -110,11 +117,11 @@ function lockCards() {
   openCards.forEach( function(currentValue, currentIndex, listObj) {
     currentValue.classList.add("match");
     currentValue.classList.remove("open");
-    currentValue.removeE
-
+    removeClickListener(currentValue);
     openCardCont.pop();
     openCardCont.pop();
   });
+
   matchCount++;
   //check if the game is complete and if to display end message
   if (matchCount === 8) {
@@ -154,13 +161,13 @@ function checkMatch() {
   else {
     return cardQuant;
   };
-}
+};
 
 // if all cards have matched, display a message with the final score
 function endMessage() {
   const moves = clickCount;
   alert(`End of the game! It took you ${moves} moves to complete it`);
-  }
+};
 
 // function to remove old deck
 function removeDeck(){
