@@ -1,12 +1,30 @@
-/*
- * Create a list that holds all of your cards
- */
+
+// Create a list that holds all card symbols
 
 const cardImages = ["far fa-angry", "far fa-angry", "fas fa-grin-squint-tears", "fas fa-grin-squint-tears", "far fa-kiss-wink-heart", "far fa-kiss-wink-heart", "far fa-grin-tongue-wink", "far fa-grin-tongue-wink", "far fa-grin-stars", "far fa-grin-stars", "fas fa-meh-rolling-eyes", "fas fa-meh-rolling-eyes", "fas fa-sad-cry", "fas fa-sad-cry", "far fa-smile", "far fa-smile"];
 
-//create and display counter of moves
-let moveCount = 0;
+// create array of star symbols
+const starSymbols = ["fas fa-star", "far fa-star", "fas fa-star-half-alt"];
+
+// reference to the card deck
+const myDeck = document.querySelector(".deck");
+
+// reference to reset icon
+const restart = document.getElementById("restart");
+
+// add click counter
+let clickCount=0;
+
+//reference to move counter
 const moveCounter = document.getElementById("moves");
+
+// container for comparing open cards
+const openCardCont = [];
+
+// counter of matches
+let matchCount = 0;
+
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffleCards(array) {
@@ -26,12 +44,10 @@ function shuffleCards(array) {
 shuffleCards(cardImages);
 
 // function to create and display the cards on the deck
-const myDeck = document.querySelector(".deck");
-
 function buildDeck() {
   for (var i=0; i<cardImages.length; i++) {
    const card = document.createElement("DIV");
-   card.classList.add("card");
+   card.classList.add("card", "clickable");
    const cardImage = cardImages[i];
    card.insertAdjacentHTML('afterbegin', `<i class='${cardImage}'></i>`);
    myDeck.appendChild(card);
@@ -40,6 +56,7 @@ function buildDeck() {
     card.addEventListener("click", function (e) {
       e.preventDefault();
       clickCount++;
+      moveCounter.innerHTML = Number(moveCounter.innerHTML) + 1;
       showSymbol(card);
       addOpen(card);
       storeImage(card);
@@ -50,12 +67,8 @@ function buildDeck() {
   };
 };
 
-
 // create the deck
 buildDeck();
-
-// create array of star symbols
-const starSymbols = ["fas fa-star", "far fa-star", "fas fa-star-half-alt"];
 
 // function to create and display the stars panel
 const starPanel = document.querySelector(".stars");
@@ -72,9 +85,6 @@ function buildStars() {
 // create the stars panel
 buildStars();
 
-// add click counter
-let clickCount=0;
-
 // set reference to all cards
 const myCards = document.querySelectorAll('div.card');
 
@@ -88,12 +98,6 @@ function showSymbol(card) {
   card.classList.add("show");
 }
 
-// container for comparing open cards
-const openCardCont = [];
-
-// counter of matches
-let matchCount = 0;
-
 //function adding class of clicked card to openCardCont
 function storeImage(card) {
   const currentImage = card.firstElementChild.className;
@@ -106,6 +110,8 @@ function lockCards() {
   openCards.forEach( function(currentValue, currentIndex, listObj) {
     currentValue.classList.add("match");
     currentValue.classList.remove("open");
+    currentValue.removeE
+
     openCardCont.pop();
     openCardCont.pop();
   });
@@ -138,8 +144,6 @@ function delay() {
 function checkMatch() {
   const cardQuant = openCardCont.length;
   if (cardQuant>0 && cardQuant%2==0) {
-    moveCount++;
-    moveCounter.innerHTML = Number(moveCounter.innerHTML) + 1;
     //compare the cards
     if (openCardCont[0] == openCardCont[1]){
       lockCards();
@@ -152,15 +156,11 @@ function checkMatch() {
   };
 }
 
-//===========
-
-
 // if all cards have matched, display a message with the final score
 function endMessage() {
-  const moves = moveCount;
+  const moves = clickCount;
   alert(`End of the game! It took you ${moves} moves to complete it`);
   }
-
 
 // function to remove old deck
 function removeDeck(){
@@ -176,14 +176,7 @@ function removeStars(){
   };
 };
 
-
 // set up event listener for reseting the game
-/*
-TO-DO --> STILL DOES NOT SET UP NEW LISTENER!
-*/
-
-const restart = document.getElementById("restart");
-
 restart.addEventListener("click", function (e) {
   e.preventDefault();
   if (confirm("Are you sure you want to start again?")) {
@@ -192,7 +185,6 @@ restart.addEventListener("click", function (e) {
     removeStars(); //remove old star panel
     buildDeck();
     buildStars();
-    moveCount = 0;
     clickCount = 0;
     matchCount = 0;
   } else {
