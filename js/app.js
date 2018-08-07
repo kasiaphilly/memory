@@ -35,8 +35,21 @@ function buildDeck() {
    const cardImage = cardImages[i];
    card.insertAdjacentHTML('afterbegin', `<i class='${cardImage}'></i>`);
    myDeck.appendChild(card);
-   };
+
+// adds event listener to each card
+    card.addEventListener("click", function (e) {
+      e.preventDefault();
+      clickCount++;
+      showSymbol(card);
+      addOpen(card);
+      storeImage(card);
+      // compare cards (if they are 2 different ones!!!)
+      delay();
+      console.log(clickCount);
+    });
+  };
 };
+
 
 // create the deck
 buildDeck();
@@ -103,7 +116,7 @@ function lockCards() {
   } else {
     console.log(`number of pairs matched: ${matchCount}`);
   }
-}
+};
 
 // function removing unmatched cards from the list and hiding card's symbols
 function hideCards() {
@@ -114,13 +127,12 @@ function hideCards() {
     openCardCont.pop();
     openCardCont.pop();
   });
-}
+};
 
-// function setting a delay to allow seeing second card before running checkMatch
+//function setting a delay to allow seeing second card before running checkMatch
 function delay() {
-  const checkDelay = setTimeout(checkMatch, 3000);
-}
-
+  const checkDelay = setTimeout(checkMatch, 2000);
+};
 
 // if the list already has another card, check to see if the two cards match
 function checkMatch() {
@@ -140,29 +152,15 @@ function checkMatch() {
   };
 }
 
+//===========
+
+
 // if all cards have matched, display a message with the final score
 function endMessage() {
   const moves = moveCount;
   alert(`End of the game! It took you ${moves} moves to complete it`);
   }
 
-// function which sets up the event listener for a card.
-function listenForClicks() {
-  myCards.forEach( function(currentValue, currentIndex, listObj) {
-  currentValue.addEventListener("click", function (e) {
-      e.preventDefault();
-      clickCount++;
-      showSymbol(currentValue);
-      addOpen(currentValue);
-      storeImage(currentValue);
-      // compare cards (if they are 2 different ones!!!)
-      delay();
-      console.log(clickCount);
-    });
-  });
-};
-
-listenForClicks();
 
 // function to remove old deck
 function removeDeck(){
@@ -185,6 +183,7 @@ TO-DO --> STILL DOES NOT SET UP NEW LISTENER!
 */
 
 const restart = document.getElementById("restart");
+
 restart.addEventListener("click", function (e) {
   e.preventDefault();
   if (confirm("Are you sure you want to start again?")) {
@@ -197,9 +196,12 @@ restart.addEventListener("click", function (e) {
     clickCount = 0;
     matchCount = 0;
   } else {
-  console.log("staying in the game");
-  };
+  console.log("staying in the game")};
 });
+
+
+
+
 
 
 //TO-DOs:
