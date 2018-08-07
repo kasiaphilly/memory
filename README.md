@@ -25,7 +25,7 @@ command to run if program contains helper info
 ## Authors
 
 Katarzyna Elliott-Maksymowicz
-[@k_maksymowicz] (https://twitter.com/k_maksymowicz) 
+[@k_maksymowicz] (https://twitter.com/k_maksymowicz)
 
 
 ## Version History
@@ -43,6 +43,7 @@ This project is licensed under the [NAME HERE] License - see the LICENSE.md file
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
+* cat icons are on free license from  Iconka.com 
 * [awesome-readme](https://github.com/matiassingers/awesome-readme)
 * [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
 * [dbader](https://github.com/dbader/readme-template)
