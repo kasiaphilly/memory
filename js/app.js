@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards
  */
 
-const cardImages = ["fa fa-cloud", "fa fa-cloud", "fa fa-heart", "fa fa-heart", "fa fa-eye", "fa fa-eye", "fa fa-bolt", "fa fa-bolt", "fa fa-futbol-o", "fa fa-futbol-o", "fa fa-bicycle", "fa fa-bicycle", "fa fa-paw", "fa fa-paw", "fa fa-puzzle-piece", "fa fa-puzzle-piece"];
+const cardImages = ["far fa-angry", "far fa-angry", "fas fa-grin-squint-tears", "fas fa-grin-squint-tears", "far fa-kiss-wink-heart", "far fa-kiss-wink-heart", "far fa-grin-tongue-wink", "far fa-grin-tongue-wink", "far fa-grin-stars", "far fa-grin-stars", "far fa-meh-rolling-eyes", "far fa-meh-rolling-eyes", "fas fa-sad-cry", "fas fa-sad-cry", "far fa-smile", "far fa-smile"];
 
 //create and display counter of moves
 let moveCount = 0;
