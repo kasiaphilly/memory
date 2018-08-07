@@ -26,7 +26,6 @@ function shuffleCards(array) {
 shuffleCards(cardImages);
 
 // create and display the cards on the deck
-
 const myDeck = document.querySelector(".deck");
 
  for (var i=0; i<cardImages.length; i++) {
@@ -36,6 +35,17 @@ const myDeck = document.querySelector(".deck");
    card.insertAdjacentHTML('afterbegin', `<i class='${cardImage}'></i>`);
    myDeck.appendChild(card);
    };
+
+// create and display the stars panel
+
+const starPanel = document.querySelector(".stars");
+
+for (var i=0; i<3; i++) {
+  const star = document.createElement("LI");
+  star.insertAdjacentHTML('afterbegin', `<i class="fa fa-star"></i>`);
+  starPanel.appendChild(star);
+  };
+
 
 // add click counter
 let clickCount=0;
@@ -120,7 +130,6 @@ function checkMatch() {
 
 
 // if all cards have matched, display a message with the final score
-
 function endMessage() {
   const moves = moveCount;
   alert(`End of the game! It took you ${moves} moves to complete it`);
@@ -138,9 +147,6 @@ currentValue.addEventListener("click", function (e) {
     storeImage(currentValue);
     // compare cards (if they are 2 different ones!!!)
     delay();
-
-
-
     console.log(clickCount);
   });
 });
