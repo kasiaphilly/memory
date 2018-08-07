@@ -200,6 +200,7 @@ restart.addEventListener("click", function (e) {
     buildStars();
     clickCount = 0;
     matchCount = 0;
+    moveCounter.innerHTML = Number("0");
   } else {
   console.log("staying in the game")};
 });
@@ -210,14 +211,5 @@ restart.addEventListener("click", function (e) {
 
 
 //TO-DOs:
-
-//do not allow to click twice on the same card to lock it
-
-//if (target of click 1 != target of click 2){}
-
-
-
-// figure out the timing problem - if you click too fast on a new card after uncovering a match, it messes up the game --> another click event listener?? It should be somewhere in the lockCards function?
-
 
 // create timer
