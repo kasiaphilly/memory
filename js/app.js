@@ -44,16 +44,20 @@ buildDeck();
 // create array of star symbols
 const starSymbols = ["fas fa-star", "far fa-star", "fas fa-star-half-alt"];
 
-// create and display the stars panel
+// function to create and display the stars panel
 const starPanel = document.querySelector(".stars");
 
-for (var i=0; i<3; i++) {
-  const star = document.createElement("LI");
-  star.classList.add("star"+i);
-  star.insertAdjacentHTML('afterbegin', `<i class='${starSymbols[2]}'></i>`);
-  starPanel.appendChild(star);
+function buildStars() {
+  for (var i=0; i<3; i++) {
+    const star = document.createElement("LI");
+    star.classList.add("star"+i);
+    star.insertAdjacentHTML('afterbegin', `<i class='${starSymbols[2]}'></i>`);
+    starPanel.appendChild(star);
   };
+}
 
+// create the stars panel
+buildStars();
 
 // add click counter
 let clickCount=0;
@@ -136,31 +140,66 @@ function checkMatch() {
   };
 }
 
-
 // if all cards have matched, display a message with the final score
 function endMessage() {
   const moves = moveCount;
   alert(`End of the game! It took you ${moves} moves to complete it`);
   }
 
-
-
-// set up the event listener for a card.
-myCards.forEach( function(currentValue, currentIndex, listObj) {
-currentValue.addEventListener("click", function (e) {
-    e.preventDefault();
-    clickCount++;
-    showSymbol(currentValue);
-    addOpen(currentValue);
-    storeImage(currentValue);
-    // compare cards (if they are 2 different ones!!!)
-    delay();
-    console.log(clickCount);
+// function which sets up the event listener for a card.
+function listenForClicks() {
+  myCards.forEach( function(currentValue, currentIndex, listObj) {
+  currentValue.addEventListener("click", function (e) {
+      e.preventDefault();
+      clickCount++;
+      showSymbol(currentValue);
+      addOpen(currentValue);
+      storeImage(currentValue);
+      // compare cards (if they are 2 different ones!!!)
+      delay();
+      console.log(clickCount);
+    });
   });
+};
+
+listenForClicks();
+
+// function to remove old deck
+function removeDeck(){
+  while (myDeck.firstChild) {
+      myDeck.removeChild(myDeck.firstChild);
+  };
+};
+
+// function to remove old star panel
+function removeStars(){
+  while (starPanel.firstChild) {
+      starPanel.removeChild(starPanel.firstChild);
+  };
+};
+
+
+// set up event listener for reseting the game
+/*
+TO-DO --> STILL DOES NOT SET UP NEW LISTENER!
+*/
+
+const restart = document.getElementById("restart");
+restart.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (confirm("Are you sure you want to start again?")) {
+    shuffleCards(cardImages);
+    removeDeck(); //remove old deck
+    removeStars(); //remove old star panel
+    buildDeck();
+    buildStars();
+    moveCount = 0;
+    clickCount = 0;
+    matchCount = 0;
+  } else {
+  console.log("staying in the game");
+  };
 });
-
-
-
 
 
 //TO-DOs:
@@ -173,10 +212,3 @@ currentValue.addEventListener("click", function (e) {
 
 
 // create timer
-
-
-
-
-/* increment the move counter and display it on the page (put this functionality in another function that you call from this one)
-
-*/

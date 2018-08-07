@@ -106,7 +106,7 @@ h1 {
     margin: 2px;
 }
 
-.score-panel .restart {
+.score-panel #restart {
     float: right;
     cursor: pointer;
     font-size: 24px;
