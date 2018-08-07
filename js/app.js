@@ -42,6 +42,7 @@ const starPanel = document.querySelector(".stars");
 
 for (var i=0; i<3; i++) {
   const star = document.createElement("LI");
+  star.classList.add("star"+i);
   star.insertAdjacentHTML('afterbegin', `<i class="fa fa-star"></i>`);
   starPanel.appendChild(star);
   };
