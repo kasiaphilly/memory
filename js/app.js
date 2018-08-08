@@ -55,7 +55,6 @@ shuffleCards(cardImages);
 function cardClickListener(e){
   e.preventDefault();
   clickCount++;
-  moveCounter.innerHTML = Number(moveCounter.innerHTML) + 1;
   removeClickListener(e.target);
   showSymbol(e.target);
   addOpen(e.target);
@@ -151,7 +150,6 @@ function lockCards() {
   openCards.forEach( function(currentValue, currentIndex, listObj) {
     currentValue.classList.add("match");
     currentValue.classList.remove("open");
-    //removeClickListener(currentValue);
     openCardCont.pop();
     openCardCont.pop();
   });
@@ -186,6 +184,7 @@ function delay() {
 function checkMatch() {
   const cardQuant = openCardCont.length;
   if (cardQuant>0 && cardQuant%2==0) {
+    moveCounter.innerHTML = Number(moveCounter.innerHTML) + 1;
     //compare the cards
     if (openCardCont[0] == openCardCont[1]){
       lockCards();
