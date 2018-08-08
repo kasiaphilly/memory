@@ -27,7 +27,12 @@ const openCardCont = [];
 // counter of matches
 let matchCount = 0;
 
+// welcome & start the game screen
+function startMessage() {
+  alert(`Welcome to the memory game! Are you ready to start?`);
+};
 
+startMessage();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffleCards(array) {
@@ -95,6 +100,30 @@ function buildStars() {
 
 // create the stars panel
 buildStars();
+
+
+// sets up timer
+function startTimer(){
+  let time = 0;
+  const myTime = setInterval(function() {
+    time++;
+    var min = Math.floor(time/60);
+    var sec = time % 60;
+
+    if (min<10){
+      min = `0${min}`;
+    };
+    if (sec<10){
+      sec = `0${sec}`;
+    };
+  // displays time in timer
+    document.getElementById("timer").innerHTML = `${min}min ${sec}sec`;
+  }, 1000);
+};
+
+startTimer();
+
+
 
 // set reference to all cards
 const myCards = document.querySelectorAll('div.card');
@@ -207,87 +236,3 @@ restart.addEventListener("click", function (e) {
   } else {
   console.log("staying in the game")};
 });
-
-
-
-
-// TO-DO: TIMER
-
-/*var time = 0;
-var running = 0;
-const gameTimer = document.getElementById("timer");
-*/
-/*function timerStart() {
-  running = 1;
-  increment();
-};
-
-function timerReset(){
-  running = 0;
-  time = 0;
-};
-
-
-function increment(){
-  setTimeout(function(){
-    time++;
-    var min = Math.floor(time/10/60);
-    var sec = Math.floor(time/10);
-    var tens = time % 10;
-
-    if (min<10){
-      min = `0${min}`;
-    };
-    if (sec<10){
-      sec = `0${sec}`;
-    };
-    gameTimer.innerHTML = `${min} min ${sec} sec ${tens}/10`;
-  }, 1000);
-};
-
-*/
-
-
-/*
-var now = new Date().getTime();
-document.getElementById("timer").innerHTML = now;
-/////////////////
-*/
-
-let time = 0;
-const myTime = setInterval(function() {
-  time++;
-  // Time calculations for hours, minutes and seconds
-  var min = Math.floor(time/60);
-  var sec = time % 60;
-
-  if (min<10){
-    min = `0${min}`;
-  };
-  if (sec<10){
-    sec = `0${sec}`;
-  };
-
-  // Output the result in timer
-  document.getElementById("timer").innerHTML = `${min}min ${sec}sec`;
-}, 1000);
-
-
-
-/* Update the count down every 1 second
-const x = setInterval(function() {
-/* Get todays date and time
-const startTime = new Date().getTime();
-let refTime = startTime.toString;
-let time = (refTime-startTime);
-refTime++;
-
-// Time calculations for hours, minutes and seconds
-var hrs = Math.floor(time/10/60/60);
-var min = Math.floor(time/10/60);
-var sec = Math.floor(time10);
-
-// Output the result in timer
-document.getElementById("timer").innerHTML = `${hrs}hrs ${min}min ${sec}sec`;
-}, 1000);
-*/
