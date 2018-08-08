@@ -101,8 +101,9 @@ buildStars();
 const gameTimer = document.getElementById("timer");
 
 let myTime = 0;
+let time = 0;
+
 function startTimer(){
-  let time = 0;
   myTime = setInterval(function() {
   time++;
   var min = Math.floor(time/60);
@@ -201,7 +202,6 @@ function checkMatch() {
 function endMessage() {
   const moves = clickCount;
   clearInterval(myTime);
-  gameTimer.innerText
   alert(`End of the game! It took you ${gameTimer.innerText} and ${moves} moves to complete it.`);
 };
 
@@ -223,6 +223,7 @@ function removeStars(){
 restart.addEventListener("click", function (e) {
   e.preventDefault();
   if (confirm("Are you sure you want to start again?")) {
+    time = 0;
     shuffleCards(cardImages);
     removeDeck(); //remove old deck
     removeStars(); //remove old star panel
