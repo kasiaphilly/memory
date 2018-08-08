@@ -85,9 +85,6 @@ function buildDeck() {
 // create the deck
 buildDeck();
 
-// start timer
-//increment();
-
 // function to create and display the stars panel
 function buildStars() {
   for (var i=0; i<3; i++) {
@@ -101,29 +98,29 @@ function buildStars() {
 // create the stars panel
 buildStars();
 
-
 // sets up timer
+const gameTimer = document.getElementById("timer");
+
+let myTime = 0;
 function startTimer(){
   let time = 0;
-  const myTime = setInterval(function() {
-    time++;
-    var min = Math.floor(time/60);
-    var sec = time % 60;
+  myTime = setInterval(function() {
+  time++;
+  var min = Math.floor(time/60);
+  var sec = time % 60;
 
-    if (min<10){
-      min = `0${min}`;
-    };
-    if (sec<10){
-      sec = `0${sec}`;
-    };
-  // displays time in timer
-    document.getElementById("timer").innerHTML = `${min}min ${sec}sec`;
-  }, 1000);
+  if (min<10){
+    min = `0${min}`;
+  };
+  if (sec<10){
+    sec = `0${sec}`;
+  };
+// displays time in timer
+  gameTimer.innerHTML = `${min}min ${sec}sec`;
+}, 1000);
 };
 
 startTimer();
-
-
 
 // set reference to all cards
 const myCards = document.querySelectorAll('div.card');
@@ -204,7 +201,9 @@ function checkMatch() {
 // if all cards have matched, display a message with the final score
 function endMessage() {
   const moves = clickCount;
-  alert(`End of the game! It took you ${moves} moves to complete it`);
+  clearInterval(myTime);
+  gameTimer.innerText
+  alert(`End of the game! It took you ${gameTimer.innerText} and ${moves} moves to complete it.`);
 };
 
 // function to remove old deck
