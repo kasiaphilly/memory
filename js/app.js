@@ -80,6 +80,9 @@ function buildDeck() {
 // create the deck
 buildDeck();
 
+// start timer
+//increment();
+
 // function to create and display the stars panel
 function buildStars() {
   for (var i=0; i<3; i++) {
@@ -150,7 +153,7 @@ function hideCards() {
 
 //function setting a delay to allow seeing second card before running checkMatch
 function delay() {
-  const checkDelay = setTimeout(checkMatch, 2000);
+  const checkDelay = setTimeout(checkMatch, 1000);
 };
 
 // if the list already has another card, check to see if the two cards match
@@ -208,8 +211,83 @@ restart.addEventListener("click", function (e) {
 
 
 
+// TO-DO: TIMER
+
+/*var time = 0;
+var running = 0;
+const gameTimer = document.getElementById("timer");
+*/
+/*function timerStart() {
+  running = 1;
+  increment();
+};
+
+function timerReset(){
+  running = 0;
+  time = 0;
+};
 
 
-//TO-DOs:
+function increment(){
+  setTimeout(function(){
+    time++;
+    var min = Math.floor(time/10/60);
+    var sec = Math.floor(time/10);
+    var tens = time % 10;
 
-// create timer
+    if (min<10){
+      min = `0${min}`;
+    };
+    if (sec<10){
+      sec = `0${sec}`;
+    };
+    gameTimer.innerHTML = `${min} min ${sec} sec ${tens}/10`;
+  }, 1000);
+};
+
+*/
+
+
+/*
+var now = new Date().getTime();
+document.getElementById("timer").innerHTML = now;
+/////////////////
+*/
+
+let time = 0;
+const myTime = setInterval(function() {
+  time++;
+  // Time calculations for hours, minutes and seconds
+  var min = Math.floor(time/60);
+  var sec = time % 60;
+
+  if (min<10){
+    min = `0${min}`;
+  };
+  if (sec<10){
+    sec = `0${sec}`;
+  };
+
+  // Output the result in timer
+  document.getElementById("timer").innerHTML = `${min}min ${sec}sec`;
+}, 1000);
+
+
+
+/* Update the count down every 1 second
+const x = setInterval(function() {
+/* Get todays date and time
+const startTime = new Date().getTime();
+let refTime = startTime.toString;
+let time = (refTime-startTime);
+refTime++;
+
+// Time calculations for hours, minutes and seconds
+var hrs = Math.floor(time/10/60/60);
+var min = Math.floor(time/10/60);
+var sec = Math.floor(time10);
+
+// Output the result in timer
+document.getElementById("timer").innerHTML = `${hrs}hrs ${min}min ${sec}sec`;
+}, 1000);
+*/
