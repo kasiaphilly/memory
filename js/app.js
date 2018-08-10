@@ -41,7 +41,7 @@ startMessage();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffleCards(array) {
-     let currentIndex = array.length; temporaryValue; randomIndex;
+     let currentIndex = array.length, temporaryValue, randomIndex;
 
      while (currentIndex !== 0) {
          randomIndex = Math.floor(Math.random() * currentIndex);
@@ -91,7 +91,7 @@ buildDeck();
 
 // function to create and display the stars panel
 function buildStars() {
-  for (var i=0; i<3; i++) {
+  for (let i=0; i<3; i++) {
     const star = document.createElement("LI");
     star.classList.add("star"+i);
     star.insertAdjacentHTML("afterbegin", `<i class="${starSymbols[0]}"></i>`);
