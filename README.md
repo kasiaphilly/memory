@@ -1,6 +1,4 @@
-# Project Title
-
-Memory Game
+# Memory Game
 
 ## Description
 
