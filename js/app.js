@@ -1,4 +1,3 @@
-
 // Create a list that holds all card symbols
 
 const cardImages = ["far fa-angry", "far fa-angry", "fas fa-grin-squint-tears", "fas fa-grin-squint-tears", "far fa-kiss-wink-heart", "far fa-kiss-wink-heart", "far fa-grin-tongue-wink", "far fa-grin-tongue-wink", "far fa-grin-stars", "far fa-grin-stars", "fas fa-meh-rolling-eyes", "fas fa-meh-rolling-eyes", "fas fa-sad-cry", "fas fa-sad-cry", "far fa-smile", "far fa-smile"];
@@ -42,7 +41,7 @@ startMessage();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffleCards(array) {
-     var currentIndex = array.length, temporaryValue, randomIndex;
+     let currentIndex = array.length; temporaryValue; randomIndex;
 
      while (currentIndex !== 0) {
          randomIndex = Math.floor(Math.random() * currentIndex);
@@ -77,13 +76,13 @@ function removeClickListener(card) {
 
 // function to create and display the cards on the deck
 function buildDeck() {
-  for (var i=0; i<cardImages.length; i++) {
-   const card = document.createElement("DIV");
-   card.classList.add("card", "clickable");
-   const cardImage = cardImages[i];
-   card.insertAdjacentHTML('afterbegin', `<i class='${cardImage}'></i>`);
-   myDeck.appendChild(card);
-   card.addEventListener("click", cardClickListener); // adds listener to each card
+  for (let i=0; i<cardImages.length; i++) {
+    const card = document.createElement("DIV");
+    card.classList.add("card", "clickable");
+    const cardImage = cardImages[i];
+    card.insertAdjacentHTML("afterbegin", `<i class="${cardImage}"></i>`);
+    myDeck.appendChild(card);
+    card.addEventListener("click", cardClickListener); // adds listener to each card
   };
 }
 
@@ -95,7 +94,7 @@ function buildStars() {
   for (var i=0; i<3; i++) {
     const star = document.createElement("LI");
     star.classList.add("star"+i);
-    star.insertAdjacentHTML('afterbegin', `<i class='${starSymbols[0]}'></i>`);
+    star.insertAdjacentHTML("afterbegin", `<i class="${starSymbols[0]}"></i>`);
     starPanel.appendChild(star);
   };
 }
@@ -117,19 +116,19 @@ function updateRating(){
   } else if (moveCount > 12 && moveCount <=15){
     //2.5 stars
     rating = `★★½`;
-    star2[0].innerHTML = `<i class='${starSymbols[2]}'>`;
+    star2[0].innerHTML = `<i class="${starSymbols[2]}">`;
   } else if (moveCount > 15 && moveCount <=18){
     // 2 stars
     rating = `★★`;
-    star2[0].innerHTML = `<i class='${starSymbols[1]}'>`;
+    star2[0].innerHTML = `<i class="${starSymbols[1]}">`;
   } else if (moveCount > 18 && moveCount <=20){
     // 1.5 stars
     rating = `★½`;
-    star1[0].innerHTML = `<i class='${starSymbols[2]}'>`;
+    star1[0].innerHTML = `<i class="${starSymbols[2]}">`;
   } else {
     // 1 star
     rating = `★`;
-    star1[0].innerHTML = `<i class='${starSymbols[1]}'>`;
+    star1[0].innerHTML = `<i class="${starSymbols[1]}">`;
   };
 }
 
@@ -160,7 +159,7 @@ function startTimer(){
 startTimer();
 
 // set reference to all cards
-const myCards = document.querySelectorAll('div.card');
+const myCards = document.querySelectorAll("div.card");
 
 //function adding class of clicked card to openCardCont
 function storeImage(card) {
@@ -174,7 +173,7 @@ function storeImage(card) {
 
 // function locking matching cards in the open position
 function lockCards() {
-  const openCards = document.querySelectorAll('div.open');
+  const openCards = document.querySelectorAll("div.open");
   openCards.forEach( function(currentValue, currentIndex, listObj) {
     currentValue.classList.add("match");
     currentValue.classList.remove("open");
@@ -191,9 +190,9 @@ function lockCards() {
   }
 };
 
-// function removing unmatched cards from the list and hiding card's symbols
+// function removing unmatched cards from the list and hiding card"s symbols
 function hideCards() {
-  const openCards = document.querySelectorAll('div.open');
+  const openCards = document.querySelectorAll("div.open");
   openCards.forEach( function(currentValue, currentIndex, listObj) {
     currentValue.classList.remove("open");
     currentValue.classList.remove("show");
