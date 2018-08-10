@@ -86,10 +86,10 @@ h1 {
  */
 
 .score-panel {
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align:left;
+  text-align: left;
   width: 600px;
   margin-bottom: 10px;
   font-size: 20px;

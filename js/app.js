@@ -36,7 +36,7 @@ let matchCount = 0;
 // welcome & start the game screen
 function startMessage() {
   alert(`Welcome to the memory game! Are you ready to start?`);
-};
+}
 
 startMessage();
 
@@ -62,18 +62,18 @@ function cardClickListener(e){
   e.preventDefault();
   clickCount++;
   removeClickListener(e.target);
-  showSymbol(e.target);
-  addOpen(e.target);
+  e.target.classList.add("show");
+  e.target.classList.add("open");
   storeImage(e.target);
   // compare cards (if they are 2 different ones!!!)
-  delay();
+  setTimeout(checkMatch, 1000);
   console.log(clickCount);
-};
+}
 
 // function removing event listener from card
 function removeClickListener(card) {
   card.removeEventListener("click", cardClickListener);
-};
+}
 
 // function to create and display the cards on the deck
 function buildDeck() {
@@ -85,7 +85,7 @@ function buildDeck() {
    myDeck.appendChild(card);
    card.addEventListener("click", cardClickListener); // adds listener to each card
   };
-};
+}
 
 // create the deck
 buildDeck();
@@ -131,7 +131,7 @@ function updateRating(){
     rating = `★`;
     star1[0].innerHTML = `<i class='${starSymbols[1]}'>`;
   };
-};
+}
 
 
 // sets up timer
@@ -155,22 +155,12 @@ function startTimer(){
 // displays time in timer
   gameTimer.innerHTML = `${min}min ${sec}sec`;
 }, 1000);
-};
+}
 
 startTimer();
 
 // set reference to all cards
 const myCards = document.querySelectorAll('div.card');
-
-// function adding "open" class to clicked card
-function addOpen(card) {
-  card.classList.add("open");
-};
-
-// function displaying the card's symbol
-function showSymbol(card) {
-  card.classList.add("show");
-};
 
 //function adding class of clicked card to openCardCont
 function storeImage(card) {
@@ -180,7 +170,7 @@ function storeImage(card) {
   } else {
     console.log("nothing to store");
   }
-};
+}
 
 // function locking matching cards in the open position
 function lockCards() {
@@ -190,7 +180,7 @@ function lockCards() {
     currentValue.classList.remove("open");
     openCardCont.pop();
     openCardCont.pop();
-  });
+  })
 
   matchCount++;
   //check if the game is complete and if to display end message
@@ -211,12 +201,7 @@ function hideCards() {
     openCardCont.pop();
     openCardCont.pop();
   });
-};
-
-//function setting a delay to allow seeing second card before running checkMatch
-function delay() {
-  const checkDelay = setTimeout(checkMatch, 1000);
-};
+}
 
 // if the list already has another card, check to see if the two cards match
 function checkMatch() {
@@ -235,7 +220,7 @@ function checkMatch() {
   else {
     return cardQuant;
   };
-};
+}
 
 // if all cards have matched, display a message with the final score
 function endMessage() {
@@ -247,7 +232,7 @@ function endMessage() {
     resetGame();
   } else {
   return("thank you for playing!")};
-};
+}
 
 
 // function to remove old deck
@@ -255,14 +240,14 @@ function removeDeck(){
   while (myDeck.firstChild) {
       myDeck.removeChild(myDeck.firstChild);
   };
-};
+}
 
 // function to remove old star panel
 function removeStars(){
   while (starPanel.firstChild) {
       starPanel.removeChild(starPanel.firstChild);
   };
-};
+}
 
 function resetGame() {
   time = 0;
@@ -288,6 +273,3 @@ restart.addEventListener("click", function (e) {
   } else {
   console.log("staying in the game")};
 });
-
-
-//TO-DOs:
