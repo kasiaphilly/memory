@@ -237,15 +237,18 @@ function checkMatch() {
   };
 };
 
-
-
 // if all cards have matched, display a message with the final score
 function endMessage() {
   clearInterval(myTime);
-  alert(`End of the game! It took you ${gameTimer.innerText} and ${moveCount} moves to complete it. Your final star rating: ${rating}
+  const playAgain = confirm(`End of the game! It took you ${gameTimer.innerText} and ${moveCount} moves to complete it. Your final star rating: ${rating}
 
   Do you want to play again?`);
+  if (playAgain == true){
+    resetGame();
+  } else {
+  return("thank you for playing!")};
 };
+
 
 // function to remove old deck
 function removeDeck(){
@@ -261,21 +264,27 @@ function removeStars(){
   };
 };
 
+function resetGame() {
+  time = 0;
+  shuffleCards(cardImages);
+  removeDeck(); //remove old deck
+  removeStars(); //remove old star panel
+  buildDeck();
+  buildStars();
+  clearInterval(myTime);
+  startTimer();
+  clickCount = 0;
+  matchCount = 0;
+  moveCount = 0;
+  rating = `★★★`
+  moveCounter.innerHTML = Number("0");
+}
+
 // set up event listener for reseting the game
 restart.addEventListener("click", function (e) {
   e.preventDefault();
   if (confirm("Are you sure you want to start again?")) {
-    time = 0;
-    shuffleCards(cardImages);
-    removeDeck(); //remove old deck
-    removeStars(); //remove old star panel
-    buildDeck();
-    buildStars();
-    clickCount = 0;
-    matchCount = 0;
-    moveCount = 0;
-    rating = `★★★`
-    moveCounter.innerHTML = Number("0");
+    resetGame();
   } else {
   console.log("staying in the game")};
 });
