@@ -25,7 +25,7 @@ let moveCount=0;
 const moveCounter = document.getElementById("moves");
 
 // establish initial rating
-let rating = 3;
+let rating = `★★★`;
 
 // container for comparing open cards
 const openCardCont = [];
@@ -113,22 +113,22 @@ const star2 = document.getElementsByClassName("star2");
 function updateRating(){
   if (moveCount <= 12){
     //3 stars
-    rating = 3;
+    rating = `★★★`;
   } else if (moveCount > 12 && moveCount <=15){
     //2.5 stars
-    rating = 2.5;
+    rating = `★★½`;
     star2[0].innerHTML = `<i class='${starSymbols[2]}'>`;
   } else if (moveCount > 15 && moveCount <=18){
     // 2 stars
-    rating = 2;
+    rating = `★★`;
     star2[0].innerHTML = `<i class='${starSymbols[1]}'>`;
   } else if (moveCount > 18 && moveCount <=20){
     // 1.5 stars
-    rating = 1.5;
+    rating = `★½`;
     star1[0].innerHTML = `<i class='${starSymbols[2]}'>`;
   } else {
     // 1 star
-    rating = 1;
+    rating = `★`;
     star1[0].innerHTML = `<i class='${starSymbols[1]}'>`;
   };
 };
@@ -237,11 +237,14 @@ function checkMatch() {
   };
 };
 
+
+
 // if all cards have matched, display a message with the final score
 function endMessage() {
-  const moves = clickCount;
   clearInterval(myTime);
-  alert(`End of the game! It took you ${gameTimer.innerText} and ${moves} moves to complete it.`);
+  alert(`End of the game! It took you ${gameTimer.innerText} and ${moveCount} moves to complete it. Your final star rating: ${rating}
+
+  Do you want to play again?`);
 };
 
 // function to remove old deck
@@ -271,6 +274,7 @@ restart.addEventListener("click", function (e) {
     clickCount = 0;
     matchCount = 0;
     moveCount = 0;
+    rating = `★★★`
     moveCounter.innerHTML = Number("0");
   } else {
   console.log("staying in the game")};
