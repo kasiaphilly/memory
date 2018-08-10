@@ -66,7 +66,7 @@ h1 {
 }
 
 .deck .card.open {
-  transform: rotateY(0);
+  transform: rotateY(180);
   background: #02b3e4;
   cursor: default;
 }
@@ -114,4 +114,57 @@ h1 {
   cursor: pointer;
   font-size: 24px;
   margin: 2px;
+}
+
+
+/* breakpoint for mobile devices */
+
+@media screen and (max-width: 700px){
+
+  .score-panel {
+    width: 96%;
+    padding: 5px;
+  }
+
+  .deck {
+    padding: 5px;
+    width: 96vw;
+    min-height: 96vw;
+  }
+
+  .deck .card {
+    padding: 0;
+    margin: 2px;
+    width: 21vw;
+    height: 21vw;
+  }
+
+  .score-panel {
+    font-size: 18px;
+  }
+
+  .stars i {
+    font-size: 18px;
+  }
+
+  .fa-redo-alt:before {
+    font-size: 30px;
+    margin: 5px;
+  }
+}
+
+@media screen and (max-width: 350px){
+
+  .score-panel {
+    font-size: 16px;
+  }
+
+  .stars i {
+    font-size: 16px;
+  }
+
+  .fa-redo-alt:before {
+    font-size: 27px;
+    margin: 3px;
+  }
 }

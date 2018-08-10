@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Memory </title>
-    <meta name="description" content="">
+    <meta name="description" content="check your memory!">
     <link rel="stylesheet prefetch" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -11,30 +12,30 @@
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Memory</h1>
-        </header>
+  <div class="container">
+    <header>
+      <h1>Memory</h1>
+    </header>
 
-        <section class="score-panel"> <!--
-          do in the end after knowing number of tries -->
-        	<ul class="stars"></ul>
+    <section class="score-panel">
+    	<ul class="stars"></ul>
 
-        	<div class="showMoves">
-            <span id="moves">0</span> Moves
-          </div>
+    	<div class="showMoves">
+        <span id="moves">0</span> Moves
+      </div>
 
-           <div id="timer">
-            </div>
+      <div id="timer">
+      </div>
 
-            <div id="restart" title="reset game">
-        		<i class="fas fa-redo-alt"></i>
-        	</div>
-        </section>
+      <div id="restart" title="reset game">
+        <i class="fas fa-redo-alt"></i>
+      </div>
+    </section>
 
-        <ul class="deck"></ul>
-    </div>
+    <ul class="deck"></ul>
 
-    <script src="js/app.js"></script>
+  </div>
+
+  <script src="js/app.js"></script>
 </body>
 </html>
