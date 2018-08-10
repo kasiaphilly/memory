@@ -18,8 +18,14 @@ const restart = document.getElementById("restart");
 // add click counter
 let clickCount=0;
 
+// add move counter
+let moveCount=0;
+
 //reference to move counter
 const moveCounter = document.getElementById("moves");
+
+// establish initial rating
+let rating = 3;
 
 // container for comparing open cards
 const openCardCont = [];
@@ -89,13 +95,44 @@ function buildStars() {
   for (var i=0; i<3; i++) {
     const star = document.createElement("LI");
     star.classList.add("star"+i);
-    star.insertAdjacentHTML('afterbegin', `<i class='${starSymbols[2]}'></i>`);
+    star.insertAdjacentHTML('afterbegin', `<i class='${starSymbols[0]}'></i>`);
     starPanel.appendChild(star);
   };
 }
 
 // create the stars panel
 buildStars();
+
+// references to stars in rating
+const star0 = document.getElementsByClassName("star0");
+const star1 = document.getElementsByClassName("star1");
+const star2 = document.getElementsByClassName("star2");
+
+
+// function to update star rating
+function updateRating(){
+  if (moveCount <= 12){
+    //3 stars
+    rating = 3;
+  } else if (moveCount > 12 && moveCount <=15){
+    //2.5 stars
+    rating = 2.5;
+    star2[0].innerHTML = `<i class='${starSymbols[2]}'>`;
+  } else if (moveCount > 15 && moveCount <=18){
+    // 2 stars
+    rating = 2;
+    star2[0].innerHTML = `<i class='${starSymbols[1]}'>`;
+  } else if (moveCount > 18 && moveCount <=20){
+    // 1.5 stars
+    rating = 1.5;
+    star1[0].innerHTML = `<i class='${starSymbols[2]}'>`;
+  } else {
+    // 1 star
+    rating = 1;
+    star1[0].innerHTML = `<i class='${starSymbols[1]}'>`;
+  };
+};
+
 
 // sets up timer
 const gameTimer = document.getElementById("timer");
@@ -185,7 +222,9 @@ function delay() {
 function checkMatch() {
   const cardQuant = openCardCont.length;
   if (cardQuant>0 && cardQuant%2==0) {
+    moveCount++;
     moveCounter.innerHTML = Number(moveCounter.innerHTML) + 1;
+    updateRating();
     //compare the cards
     if (openCardCont[0] == openCardCont[1]){
       lockCards();
@@ -231,7 +270,11 @@ restart.addEventListener("click", function (e) {
     buildStars();
     clickCount = 0;
     matchCount = 0;
+    moveCount = 0;
     moveCounter.innerHTML = Number("0");
   } else {
   console.log("staying in the game")};
 });
+
+
+//TO-DOs:
