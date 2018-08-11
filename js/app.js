@@ -1,11 +1,14 @@
 // Create a list that holds all card symbols
 
-let cardImages = ["far fa-angry", "fas fa-grin-squint-tears", "far fa-kiss-wink-heart", "far fa-grin-tongue-wink", "far fa-grin-stars", "fas fa-meh-rolling-eyes", "fas fa-sad-cry", "far fa-smile"];
+let cardImages = ["far fa-angry", "fas fa-grin-squint-tears",
+"far fa-kiss-wink-heart", "far fa-grin-tongue-wink", "far fa-grin-stars",
+"fas fa-meh-rolling-eyes", "fas fa-sad-cry", "far fa-smile"];
 
 cardImages = cardImages.concat(cardImages);
 
 // create array of star symbols
-const starSymbols = ["fas fa-star", "far fa-star", "fas fa-star-half-alt"];
+const starSymbols = ["fas fa-star", "far fa-star",
+"fas fa-star-half-alt"];
 
 // reference to the card deck
 const myDeck = document.querySelector(".deck");
@@ -96,7 +99,8 @@ function buildDeck() {
     const cardImage = cardImages[i];
     card.insertAdjacentHTML("afterbegin", `<i class="${cardImage}"></i>`);
     myDeck.appendChild(card);
-    card.addEventListener("click", cardClickListener); // adds listener to each card
+    // adds listener to each card
+    card.addEventListener("click", cardClickListener);
   };
 }
 
@@ -204,7 +208,7 @@ function lockCards() {
   }
 };
 
-// function removing unmatched cards from the list and hiding card"s symbols
+// function removing unmatched cards from list & hiding their symbols
 function hideCards() {
   const openCards = document.querySelectorAll("div.open");
   openCards.forEach( function(currentValue, currentIndex, listObj) {
@@ -239,9 +243,12 @@ function checkMatch() {
 // if all cards have matched, display a message with the final score
 function endMessage() {
   clearInterval(myTime);
-  const playAgain = confirm(`End of the game! It took you ${gameTimer.innerText} and ${moveCount} moves to complete it. Your final star rating: ${rating}
+  const playAgain = confirm(
+    `End of the game!
+    It took you ${gameTimer.innerText} and ${moveCount} moves to complete it.
+    Your final star rating: ${rating}
 
-  Do you want to play again?`);
+    Do you want to play again?`);
   if (playAgain == true){
     resetGame();
   } else {
