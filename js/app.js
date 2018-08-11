@@ -275,6 +275,9 @@ function resetGame() {
   moveCount = 0;
   rating = `★★★`
   moveCounter.innerHTML = Number("0");
+  if (openCardCont.length===1){
+    openCardCont.pop();
+  };
 }
 
 // set up event listener for reseting the game
