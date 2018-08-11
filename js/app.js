@@ -77,6 +77,9 @@ function cardClickListener(e){
   if (clickCount%2===0){
     document.addEventListener('click', DisableClickOnPage, true);
   }
+  if (clickCount==1){
+    startTimer();
+  }
   removeClickListener(e.target);
   e.target.classList.add("show");
   e.target.classList.add("open");
@@ -173,8 +176,6 @@ function startTimer(){
   gameTimer.innerHTML = `${min}min ${sec}sec`;
 }, 1000);
 }
-
-startTimer();
 
 // set reference to all cards
 const myCards = document.querySelectorAll("div.card");
