@@ -244,12 +244,9 @@ function checkMatch() {
 // if all cards have matched, display a message with the final score
 function endMessage() {
   clearInterval(myTime);
-  const playAgain = confirm(
-    `End of the game!
-    It took you ${gameTimer.innerText} and ${moveCount} moves to complete it.
-    Your final star rating: ${rating}
+  const playAgain = confirm(`End of the game! It took you ${gameTimer.innerText} and ${moveCount} moves to complete it. Your final star rating: ${rating}
 
-    Do you want to play again?`);
+  Do you want to play again?`);
   if (playAgain == true){
     resetGame();
   } else {
