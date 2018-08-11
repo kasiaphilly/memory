@@ -14,6 +14,9 @@ const starPanel = document.querySelector(".stars");
 // reference to reset icon
 const restart = document.getElementById("restart");
 
+// reference to all cards
+const allCards = document.querySelectorAll(".card");
+
 // add click counter
 let clickCount=0;
 
@@ -56,10 +59,19 @@ function shuffleCards(array) {
 // shuffle the deck
 shuffleCards(cardImages);
 
+function DisableClickOnPage(e){
+    e.stopPropagation();
+    e.preventDefault();
+}
+
+
 // event handler for click on card
 function cardClickListener(e){
   e.preventDefault();
   clickCount++;
+  if (clickCount%2===0){
+    document.addEventListener('click', DisableClickOnPage, true);
+  }
   removeClickListener(e.target);
   e.target.classList.add("show");
   e.target.classList.add("open");
@@ -78,7 +90,7 @@ function removeClickListener(card) {
 function buildDeck() {
   for (let i=0; i<cardImages.length; i++) {
     const card = document.createElement("DIV");
-    card.classList.add("card", "clickable");
+    card.classList.add("card");
     const cardImage = cardImages[i];
     card.insertAdjacentHTML("afterbegin", `<i class="${cardImage}"></i>`);
     myDeck.appendChild(card);
@@ -180,7 +192,7 @@ function lockCards() {
     openCardCont.pop();
     openCardCont.pop();
   })
-
+  document.removeEventListener('click', DisableClickOnPage, true);
   matchCount++;
   //check if the game is complete and if to display end message
   if (matchCount === 8) {
@@ -200,6 +212,7 @@ function hideCards() {
     openCardCont.pop();
     openCardCont.pop();
   });
+  document.removeEventListener('click', DisableClickOnPage, true);
 }
 
 // if the list already has another card, check to see if the two cards match
