@@ -1,6 +1,8 @@
 // Create a list that holds all card symbols
 
-const cardImages = ["far fa-angry", "far fa-angry", "fas fa-grin-squint-tears", "fas fa-grin-squint-tears", "far fa-kiss-wink-heart", "far fa-kiss-wink-heart", "far fa-grin-tongue-wink", "far fa-grin-tongue-wink", "far fa-grin-stars", "far fa-grin-stars", "fas fa-meh-rolling-eyes", "fas fa-meh-rolling-eyes", "fas fa-sad-cry", "fas fa-sad-cry", "far fa-smile", "far fa-smile"];
+let cardImages = ["far fa-angry", "fas fa-grin-squint-tears", "far fa-kiss-wink-heart", "far fa-grin-tongue-wink", "far fa-grin-stars", "fas fa-meh-rolling-eyes", "fas fa-sad-cry", "far fa-smile"];
+
+cardImages = cardImages.concat(cardImages);
 
 // create array of star symbols
 const starSymbols = ["fas fa-star", "far fa-star", "fas fa-star-half-alt"];
